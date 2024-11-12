@@ -6,6 +6,12 @@
 
 ## Emailing Release Notes
 
-## Commitlint
+## Commitlint + Prettier
 
 ## Drizzle Setup/Test Page
+
+## Add Workflow for PR Description Requirement
+
+## Mock Data Setup for Testing
+
+## Shadcn Installation
