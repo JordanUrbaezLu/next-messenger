@@ -1,4 +1,6 @@
 import { getUserById } from "@/queries/select/getUserById";
+import Content from "./content";
+import React from "react";
 
 export default async function Page({
   params,
@@ -7,10 +9,5 @@ export default async function Page({
 }) {
   const userId = (await params).userId;
   const user = (await getUserById(userId || 0))[0];
-  return (
-    <div>
-      <div>Hello {user.name}</div>
-      <div>You are {user.age} years old!</div>
-    </div>
-  );
+  return <Content name={user.name} age={user.age} />;
 }
