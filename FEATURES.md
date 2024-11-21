@@ -18,4 +18,4 @@
 
 ## Real Time Messaging
 
-## Seach Functionality
+## Search Functionality
