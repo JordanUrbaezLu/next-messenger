@@ -5,11 +5,21 @@ export const Content = () => {
   const [name, setName] = React.useState("");
   const [age, setAge] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const createAccount = () => {
-    fetch("/api/signup", {
+  const [emailSuccess, setEmailSuccess] = React.useState<
+    "SUCCESS" | "FAILED" | "UNKNOWN"
+  >("UNKNOWN");
+
+  const createAccount = async () => {
+    const response = await fetch("/api/signup", {
       method: "POST",
       body: JSON.stringify({ name, email, age }),
     });
+
+    if (response.status === 200) {
+      setEmailSuccess("SUCCESS");
+    } else {
+      setEmailSuccess("FAILED");
+    }
   };
 
   return (
@@ -42,6 +52,16 @@ export const Content = () => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <button onClick={createAccount}>CREATE ACCOUNT</button>
+      {emailSuccess === "SUCCESS" && (
+        <div className="text-green-600">
+          Account successfully created for <b>{email}</b>!
+        </div>
+      )}
+      {emailSuccess === "FAILED" && (
+        <div className="text-red-600">
+          Unable to create account for <b>{email}</b>!
+        </div>
+      )}
     </>
   );
 };
