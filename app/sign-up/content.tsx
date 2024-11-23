@@ -5,25 +5,27 @@ export const Content = () => {
   const [name, setName] = React.useState("");
   const [age, setAge] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [emailSuccess, setEmailSuccess] = React.useState<
+  const [signUpSuccess, setSignUpSuccess] = React.useState<
     "SUCCESS" | "FAILED" | "UNKNOWN"
   >("UNKNOWN");
+  const [failedText, setFailedText] = React.useState("");
 
-  const createAccount = async () => {
+  const signUpAccount = async () => {
     const response = await fetch("/api/signup", {
       method: "POST",
       body: JSON.stringify({ name, email, age }),
     });
 
     if (response.status === 200) {
-      setEmailSuccess("SUCCESS");
+      setSignUpSuccess("SUCCESS");
     } else {
-      setEmailSuccess("FAILED");
+      setFailedText(response.statusText);
+      setSignUpSuccess("FAILED");
     }
   };
 
   return (
-    <>
+    <div className="p-2">
       <div>NAME</div>
       <input
         className="bg-gray-300"
@@ -51,18 +53,24 @@ export const Content = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <button onClick={createAccount}>CREATE ACCOUNT</button>
-      {emailSuccess === "SUCCESS" && (
+      <div className="pb-3">__________</div>
+      <button
+        className="p-2 mb-2 bg-sky-500 hover:bg-sky-700 rounded-full"
+        onClick={signUpAccount}
+      >
+        SIGN UP
+      </button>
+      {signUpSuccess === "SUCCESS" && (
         <div className="text-green-600">
-          Account successfully created for <b>{email}</b>!
+          Sign up was successfull for <b>{email}</b>!
         </div>
       )}
-      {emailSuccess === "FAILED" && (
+      {signUpSuccess === "FAILED" && (
         <div className="text-red-600">
-          Unable to create account for <b>{email}</b>!
+          {failedText} for <b>{email}</b>!
         </div>
       )}
-    </>
+    </div>
   );
 };
 

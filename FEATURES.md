@@ -15,3 +15,5 @@
 ## Mock Data Setup for Testing
 
 ## Shadcn Installation
+
+## Add Page View Analytics with Cron Job Set Up that sends Daily mail of Visits for Last 7 Days (Graph, Daily EMail, Count, Resend)
