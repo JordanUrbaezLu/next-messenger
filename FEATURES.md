@@ -15,3 +15,7 @@
 ## Mock Data Setup for Testing
 
 ## Shadcn Installation
+
+## Real Time Messaging
+
+## Search Functionality
