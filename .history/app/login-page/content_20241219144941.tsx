@@ -71,7 +71,7 @@ function LoginForm() {
   return (
     <div className="flex items-center justify-center h-screen">
       <form
-        onSubmit={handleLogin}
+        onSubmit={handlerLogin}
         className="relative grid place-items-center bg-red-300 p-8 rounded shadow-lg w-[400px] h-[500px]"
       >
         <Image
