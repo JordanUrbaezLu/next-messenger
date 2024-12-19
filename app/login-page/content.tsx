@@ -30,7 +30,6 @@ function LoginForm() {
             id="email"
             type="email"
             placeholder="enter email"
-            onChange={(e) => setEmail(e.target.value)}
             className="block mt-1 p-1 border rounded"
           />
         </div>
