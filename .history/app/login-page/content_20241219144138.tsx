@@ -42,7 +42,7 @@ function LoginForm() {
 
   const validateForm = () => {
     if (!email.includes("@")) {
-      setError("Invalid email address");
+      setError("Invalid email addrss");
       return false;
     }
     if (password.length < 8) {

@@ -56,7 +56,7 @@ function LoginForm() {
   const Login = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      handleLogin(e);
+      handleLogin;
     } else {
       alert("Please enter valid email address or password");
     }

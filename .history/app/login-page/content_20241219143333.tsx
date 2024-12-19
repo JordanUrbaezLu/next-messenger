@@ -56,9 +56,9 @@ function LoginForm() {
   const Login = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      handleLogin(e);
+      alert("Login valid!");
     } else {
-      alert("Please enter valid email address or password");
+      alert("Please enter valid email address");
     }
   };
   const ForgotPassword = () => {
@@ -87,7 +87,6 @@ function LoginForm() {
         />
         <h1 className="text-xl font-bold mb-1">Next-Messenger</h1>
         <div className="w-full mb-1">
-          {error}
           <label htmlFor="email" className="block mb-1 font-medium">
             Email:
           </label>
