@@ -44,7 +44,7 @@ function LoginForm() {
   const Login = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      alert("Login valid!");
+      handleLogin(e);
     } else {
       alert("Please enter valid email address or password");
     }
@@ -58,7 +58,10 @@ function LoginForm() {
   };
   return (
     <div className="flex items-center justify-center h-screen">
-      <form className="relative grid place-items-center bg-red-300 p-8 rounded shadow-lg w-[400px] h-[500px]">
+      <form
+        onSubmit={handleLogin}
+        className="relative grid place-items-center bg-red-300 p-8 rounded shadow-lg w-[400px] h-[500px]"
+      >
         <Image
           src="https://as1.ftcdn.net/v2/jpg/02/22/45/86/1000_F_222458695_vF59wjurKaSQ1TchnTdRSr8dJRbUq4nc.jpg"
           alt="Incoming Mail"
