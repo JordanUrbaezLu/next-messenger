@@ -32,7 +32,7 @@ function LoginForm() {
     e.preventDefault();
     if (rememberMe) {
       localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
+      localStorage.setItem("passwrd", password);
     } else {
       localStorage.removeItem("email");
       localStorage.removeItem("password");
