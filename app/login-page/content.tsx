@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 function App() {
   return (
@@ -18,61 +17,57 @@ function LoginForm() {
   const [error, setError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  useEffect(() => {
-    const savedEmail = localStorage.getItem("email");
-    const savedPassword = localStorage.getItem("password");
-    if (savedEmail && savedPassword) {
-      setEmail(savedEmail);
-      setPassword(savedPassword);
-      setRememberMe(true);
-    }
-  }, []);
-
   const validateForm = () => {
     if (!email.includes("@")) {
-      setError("Invalid email address");
+      setError("Invalid email address.");
       return false;
     }
     if (password.length < 8) {
       setError("Password must be at least 8 characters long.");
-      alert("please enter valid password");
       return false;
     }
     setError("");
     return true;
   };
-  const Login = (e) => {
+
+  const Login = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
       alert("Login valid!");
-    } else {
-      alert("Please enter valid email address or password");
+      if (rememberMe) {
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+      } else {
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
+      }
     }
   };
-  const ForgotPassword = () => {
+
+  const forgotPassword = () => {
     if (!email) {
-      alert("Please enter your email to reset the password");
+      setError("Please enter your email to reset the password.");
     } else {
+      setError("");
       alert(`Password reset instructions sent to ${email}`);
     }
   };
+
   return (
     <div className="flex items-center justify-center h-screen">
-      <form className="relative grid place-items-center bg-red-300 p-8 rounded shadow-lg w-[400px] h-[500px]">
+      <form
+        onSubmit={(e) => Login(e)}
+        className="relative grid place-items-center bg-red-300 p-8 rounded shadow-lg max-w-sm w-full h-auto"
+      >
         <Image
           src="https://as1.ftcdn.net/v2/jpg/02/22/45/86/1000_F_222458695_vF59wjurKaSQ1TchnTdRSr8dJRbUq4nc.jpg"
           alt="Incoming Mail"
           width={50}
           height={50}
-          style={{
-            position: "absolute",
-            top: 2,
-            left: 2,
-          }}
+          className="absolute top-2 left-2"
         />
-        <h1 className="text-xl font-bold mb-1">Next-Messenger</h1>
-        <div className="w-full mb-1">
-          {error}
+        <h1 className="text-xl font-bold mb-4">Next-Messenger</h1>
+        <div className="w-full mb-4">
           <label htmlFor="email" className="block mb-1 font-medium">
             Email:
           </label>
@@ -80,11 +75,15 @@ function LoginForm() {
             id="email"
             type="email"
             placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError("");
+            }}
             className="block w-full p-2 border rounded"
           />
         </div>
-        <div className="w-full mb-1">
+        <div className="w-full mb-4">
           <label htmlFor="password" className="block mb-1 font-medium">
             Password:
           </label>
@@ -92,11 +91,15 @@ function LoginForm() {
             id="password"
             type="password"
             placeholder="Enter password"
-            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setError("");
+            }}
             className="block w-full p-2 border rounded"
           />
         </div>
-        <div className="w-full mb-1">
+        <div className="w-full mb-4">
           <label className="flex items-center">
             <input
               type="checkbox"
@@ -110,31 +113,29 @@ function LoginForm() {
         <div className="space-y-2">
           <button
             type="submit"
-            onClick={Login}
-            className="w-full bg-green-500 text-white px-1 py-2 rounded hover:bg-green-600"
+            aria-label="Login button"
+            className="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
           >
             Login
           </button>
           <button
             type="button"
-            onClick={ForgotPassword}
-            className="w-full bg-blue-500 text-black px-0 py-0 rounded hover:bg-gray-600"
+            onClick={forgotPassword}
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
           >
             Forgot Password
           </button>
-          <Link href="http://localhost:3001/sign-up"></Link>
+        </div>
+        <div className="flex justify-between w-full mt-4">
           <button
             type="button"
-            onClick={() =>
-              (window.location.href = "http://localhost:3001/sign-up")
-            }
-            className="absolute bottom-0 left-0  text-black px-2 py-1 rounded hover:bg-blue-300"
+            className="text-black px-2 py-1 rounded hover:bg-blue-300"
           >
             Create Account
           </button>
           <button
             type="button"
-            className="absolute bottom-0 right-0  text-black px-2 py-1 rounded hover:bg-blue-300"
+            className="text-black px-2 py-1 rounded hover:bg-blue-300"
           >
             Privacy Policy
           </button>
