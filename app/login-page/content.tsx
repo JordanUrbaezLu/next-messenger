@@ -68,6 +68,7 @@ function LoginForm() {
         />
         <h1 className="text-xl font-bold mb-4">Next-Messenger</h1>
         <div className="w-full mb-4">
+          {error && <p className="text-red-500 text-sm">{error}</p>}
           <label htmlFor="email" className="block mb-1 font-medium">
             Email:
           </label>
