@@ -9,7 +9,7 @@
     "lint": "next lint",
     "db:studio": "npx drizzle-kit studio",
     "db:push": "npx drizzle-kit push",
-    "prepare": "husky install",
+    "prepare": "husky",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx,css,scss}\""
   },
   "dependencies": {
@@ -44,5 +44,9 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{js,jsx,ts,tsx,json,md,mdx,css,scss}": "prettier --write"
+  },
+  "engines": {
+    "node": "20.10.0",
+    "npm": "10.2.3"
   }
 }
