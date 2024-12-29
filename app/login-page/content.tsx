@@ -54,19 +54,22 @@ function LoginForm() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen ">
       <form
         onSubmit={(e) => Login(e)}
-        className="relative grid place-items-center bg-red-300 p-8 rounded shadow-lg max-w-sm w-full h-auto"
+        className="relative grid place-items-center bg-red-300 p-8 rounded shadow-lg max-w-sm w-[600px] h-[510px]"
       >
         <Image
           src="https://as1.ftcdn.net/v2/jpg/02/22/45/86/1000_F_222458695_vF59wjurKaSQ1TchnTdRSr8dJRbUq4nc.jpg"
           alt="Incoming Mail"
           width={50}
           height={50}
-          className="absolute top-2 left-2"
+          className="absolute top-1 left-1"
         />
         <h1 className="text-xl font-bold mb-4">Next-Messenger</h1>
+        <h2 className="text-l font-bold mb-4 absolute bottom-11 ">
+          get the app
+        </h2>
         <div className="w-full mb-4">
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <label htmlFor="email" className="block mb-1 font-medium">
@@ -130,17 +133,28 @@ function LoginForm() {
         <div className="flex justify-between w-full mt-4">
           <button
             type="button"
-            className="text-black px-2 py-1 rounded hover:bg-blue-300"
+            className="text-black px-1 py-2 rounded hover:bg-blue-300 relative -top-5"
           >
             Create Account
           </button>
           <button
             type="button"
-            className="text-black px-2 py-1 rounded hover:bg-blue-300"
+            className="text-black px-1 py-2 rounded hover:bg-blue-300 relative -top-5"
           >
             Privacy Policy
           </button>
         </div>
+        <button
+          type="button"
+          className="flex items-center space-x-2 text-black px-3 py-2 rounded hover:bg-blue-100 mt-4"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+            alt="Google Icon"
+            className="w-5 h-5"
+          />
+          <span>Sign in using Google</span>
+        </button>
       </form>
     </div>
   );
