@@ -153,7 +153,7 @@ function LoginForm() {
             alt="Google Icon"
             className="w-5 h-5"
           />
-          <span>Sign in using Google</span>
+          <span>Sign in using Google login</span>
         </button>
       </form>
     </div>
